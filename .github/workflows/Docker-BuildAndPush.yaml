@@ -10,16 +10,16 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2.3.4
 
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: ${{ secrets.AWS_REGION }}
-#
-#      - name: Login to Amazon ECR
-#        id: login-ecr
-#        uses: aws-actions/amazon-ecr-login@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIAR7LK3SYTNVKPYJWL
+          aws-secret-access-key: 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
+          aws-region: us-east-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
 #      - name: Generate Image Name
 #        run: |
@@ -28,7 +28,7 @@ jobs:
 #          echo "FULL_IMAGE_NAME="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_RESOURCE_NAME_PREFIX }}:$IMAGE_TAG"" >> ${GITHUB_ENV}
 
       - name: Build Docker Image
-        run: docker build -t dockerimage .
+        run: docker build -t techverito .
 
-#      - name: Push Image to ECR
-#        run: docker push ${{ env.FULL_IMAGE_NAME }}
+      - name: Push Image to ECR
+        run: docker push public.ecr.aws/v1l4z3d8/techverito:latest

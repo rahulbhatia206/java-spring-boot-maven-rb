@@ -13,9 +13,6 @@ COPY ./ ./
 ## build for release
 #RUN mvn clean package
 
-# Verify Allure Version
-RUN allure --version
-
 # Install Zip
 RUN apt-get update -qqy \
     && apt-get -qqy install zip unzip
