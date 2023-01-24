@@ -25,7 +25,7 @@ jobs:
         run: docker build -t techverito-docker .
 
       - name: Tag Docker Image
-        run: docker tag techverito-docker:latest public.ecr.aws/v1l4z3d8/techverito:latest
+        run: docker tag techverito-docker:latest 136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest
 
       - name: Push Image to ECR
-        run: docker push public.ecr.aws/v1l4z3d8/techverito:latest
+        run: docker push 136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest
