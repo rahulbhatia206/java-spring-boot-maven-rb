@@ -28,7 +28,7 @@ jobs:
 #          echo "FULL_IMAGE_NAME="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_RESOURCE_NAME_PREFIX }}:$IMAGE_TAG"" >> ${GITHUB_ENV}
 
       - name: Build Docker Image
-        run: docker build -t DockerImage .
+        run: docker build -t dockerImage .
 
 #      - name: Push Image to ECR
 #        run: docker push ${{ env.FULL_IMAGE_NAME }}
