@@ -1,24 +1,14 @@
-# our base build image
-FROM maven:3.8.6-jdk-8 as maven
+# Fetching latest version of Java
+FROM openjdk:18
 
-# copy the project files
-COPY ./pom.xml ./pom.xml
+# Setting up work directory
+WORKDIR /app
 
-# build all dependencies
-RUN mvn dependency:go-offline -B
+# Copy the jar file into our app
+COPY ./target/spring-0.0.1-SNAPSHOT.jar /app
 
-# copy your other files
-COPY ./ ./
+# Exposing port 8080
+EXPOSE 8080
 
-## build for release
-#RUN mvn clean package
-
-# Install Zip
-RUN apt-get update -qqy \
-    && apt-get -qqy install zip unzip
-
-# Install AWS CLI
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-
-RUN unzip awscliv2.zip \
-    && ./aws/install
+# Starting the application
+CMD ["java", "-jar", "spring-0.0.1-SNAPSHOT.jar"]
