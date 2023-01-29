@@ -55,13 +55,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: techverito-ecs-service-2
+          container-name: web-service
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: techverito-ecs-service-2
-          cluster: techverito-ecs-cluster-2
+          service: web-service
+          cluster: techverito-ecs-cluster-3
           wait-for-service-stability: true

@@ -1,0 +1,18 @@
+//container_definitions.json
+
+[{
+  "command": ["bundle", "exec", "rackup", "-p", "8080", "-E", "production"],
+  "cpu": 1024,
+
+  "environment": [
+    { "name": "MESSAGE", "value": "Hello World!" }
+  ],
+
+  "image": "136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest",
+  "name": "app",
+
+  "portMappings": [
+    { "containerPort": 8080, "protocol": "tcp" }
+  ]
+}]
+
