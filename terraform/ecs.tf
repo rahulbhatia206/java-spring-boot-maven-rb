@@ -69,6 +69,11 @@ resource "aws_ecs_service" "service" {
   }
 }
 
+data "aws_ecs_container_definition" "techverito-ecs-container" {
+  task_definition = aws_ecs_task_definition.task-definition-test.id
+  container_name  = "frontend-container"
+}
+
 resource "aws_cloudwatch_log_group" "log_group" {
   name = "/ecs/frontend-container"
   tags = {
