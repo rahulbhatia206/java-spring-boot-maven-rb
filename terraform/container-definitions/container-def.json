@@ -1,6 +1,6 @@
 [
   {
-    "name": "techverito-container-3",
+    "name": "techverito-container",
     "image": "136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest",
     "cpu": 10,
     "memory": 256,
