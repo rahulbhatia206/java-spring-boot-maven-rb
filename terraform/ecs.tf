@@ -11,7 +11,7 @@ module "ecs-fargate" {
   source  = "umotif-public/ecs-fargate/aws"
   version = "~> 6.1.0"
 
-  name_prefix        = "ecs-fargate-example"
+  name_prefix        = "techverito-ecs-service-2"
   vpc_id             = aws_vpc.ecs_vpc.id
   private_subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 
