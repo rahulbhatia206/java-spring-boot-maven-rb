@@ -9,7 +9,7 @@
   ],
 
   "image": "136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest",
-  "name": "app",
+  "name": "techverito-container-3",
 
   "portMappings": [
     { "containerPort": 8080, "protocol": "tcp" }

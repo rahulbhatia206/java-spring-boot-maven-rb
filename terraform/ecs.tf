@@ -43,20 +43,16 @@ resource "aws_ecs_cluster" "techverito-ecs-cluster" {
 
 
 # update file container-def, so it's pulling image from ecr
-resource "aws_ecs_task_definition" "task-definition-test" {
-  family                = "web-family"
+resource "aws_ecs_task_definition" "techverito-task-definition-3" {
+  family                = "techverito-taskdef-3"
   container_definitions = file("container-definitions/container-def.json")
-  network_mode          = "bridge"
-  tags = {
-    "env"       = "dev"
-    "createdBy" = "binpipe"
-  }
+  tags = var.tags
 }
 
 resource "aws_ecs_service" "service" {
   name            = "web-service"
   cluster         = aws_ecs_cluster.techverito-ecs-cluster.id
-  task_definition = aws_ecs_task_definition.task-definition-test.arn
+  task_definition = aws_ecs_task_definition.techverito-task-definition-3.arn
   desired_count   = 10
   ordered_placement_strategy {
     type  = "binpack"
@@ -70,15 +66,7 @@ resource "aws_ecs_service" "service" {
 }
 
 data "aws_ecs_container_definition" "techverito-ecs-container" {
-  task_definition = aws_ecs_task_definition.task-definition-test.id
-  container_name  = "frontend-container"
-}
-
-resource "aws_cloudwatch_log_group" "log_group" {
-  name = "/ecs/frontend-container"
-  tags = {
-    "env"       = "dev"
-    "createdBy" = "binpipe"
-  }
+  task_definition = aws_ecs_task_definition.techverito-task-definition-3.id
+  container_name  = "techverito-container-3"
 }
 
