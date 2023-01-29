@@ -1,7 +1,7 @@
 [
   {
-    "name": "binpipe-devops",
-    "image": "879566836351.dkr.ecr.us-east-1.amazonaws.com/workshop:latest",
+    "name": "techverito-container-3",
+    "image": "136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest",
     "cpu": 10,
     "memory": 256,
     "essential": true,
@@ -9,13 +9,6 @@
       {
         "containerPort": 80
       }
-    ],
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-group" : "/ecs/frontend-container",
-        "awslogs-region": "us-east-1"
-      }
-    }
+    ]
   }
 ]

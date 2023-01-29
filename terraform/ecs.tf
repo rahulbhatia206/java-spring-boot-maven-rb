@@ -54,19 +54,10 @@ resource "aws_ecs_service" "service" {
   cluster         = aws_ecs_cluster.techverito-ecs-cluster.id
   task_definition = aws_ecs_task_definition.techverito-task-definition-3.arn
   desired_count   = 10
-  ordered_placement_strategy {
-    type  = "binpack"
-    field = "cpu"
-  }
 
   # Optional: Allow external changes without Terraform plan difference(for example ASG)
   lifecycle {
     ignore_changes = [desired_count]
   }
-}
-
-data "aws_ecs_container_definition" "techverito-ecs-container" {
-  task_definition = aws_ecs_task_definition.techverito-task-definition-3.id
-  container_name  = "techverito-container-3"
 }
 
