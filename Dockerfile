@@ -1,14 +1,18 @@
-# Fetching latest version of Java
-FROM openjdk:18
+# our base build image
+FROM maven:3.8.6-jdk-8 as maven
 
-# Setting up work directory
-WORKDIR /app
+# copy the project files
+COPY ./pom.xml ./pom.xml
 
-# Copy the jar file into our app
-COPY ./target/hello-world-spring-boot-pom-0.0.1-SNAPSHOT.jar /app
+# build all dependencies
+RUN mvn dependency:go-offline -B
 
-# Exposing port 8080
-EXPOSE 8080
+# copy your other files
+COPY ./ ./
 
-# Starting the application
-CMD ["java", "-jar", "hello-world-spring-boot-pom-0.0.1-SNAPSHOT.jar"]
+## build for release
+RUN mvn clean
+
+
+
+
