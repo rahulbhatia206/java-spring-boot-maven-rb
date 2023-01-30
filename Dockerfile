@@ -1,11 +1,10 @@
-# Fetching latest version of Java
-FROM openjdk:8
+FROM openjdk:11-jdk
+VOLUME /tmp
 
-# Exposing port 8080
-EXPOSE 8080
+RUN useradd -d /home/appuser -m -s /bin/bash appuser
+USER appuser
 
-# Copy the jar file into our app
-ADD target/hello-world-spring-boot-pom-0.0.1-SNAPSHOT.jar  app.jar
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost:8080/actuator/health/ || exit 1
 
-# Starting the application
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY target/hello-world-spring-boot-pom-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
