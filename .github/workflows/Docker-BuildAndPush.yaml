@@ -21,16 +21,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build Docker Image
-        run: docker build -t techverito-docker .
-
-      - name: Tag Docker Image
-        run: docker tag techverito-docker:latest 136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest
-
-      - name: Push Image to ECR
-        id: push-image
-        run: docker push 136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest
-
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
