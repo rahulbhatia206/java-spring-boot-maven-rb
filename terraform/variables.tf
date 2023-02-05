@@ -13,7 +13,7 @@ variable "environment" {
 variable "name" {
   description = "Name to use for resources"
   type = string
-  default = "techverito"
+  default = "altir"
 }
 
 variable "tags" {

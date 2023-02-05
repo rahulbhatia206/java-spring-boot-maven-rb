@@ -1,21 +1,21 @@
-#Create User for Techverito project
+#Create User for altir project
 
 data "aws_caller_identity" "current"{
 
 }
 
 #Create Iam User
-resource "aws_iam_user" "techverito_iam" {
+resource "aws_iam_user" "altir_iam" {
   name = "${var.name}-user"
   tags = var.tags
 }
 
 #Create Key
-resource "aws_iam_access_key" "techverito_key" {
-  user = aws_iam_user.techverito_iam.name
+resource "aws_iam_access_key" "altir_key" {
+  user = aws_iam_user.altir_iam.name
 
   depends_on = [
-  aws_iam_user.techverito_iam
+  aws_iam_user.altir_iam
   ]
 }
 
@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "user_policy"{
       "ecr:GetAuthorizationToken",
       "ecr:CompleteLayerUpload"
     ]
-    resources = [aws_ecr_repository.techverito-repo.arn]
+    resources = [aws_ecr_repository.altir-repo.arn]
   }
 
   statement {
@@ -62,8 +62,8 @@ data "aws_iam_policy_document" "user_policy"{
 }
 
 # Create Policy from document
-resource "aws_iam_user_policy" "techverito-policy" {
+resource "aws_iam_user_policy" "altir-policy" {
   name = "${var.name}-policy"
   policy = data.aws_iam_policy_document.user_policy.json
-  user   = aws_iam_user.techverito_iam.name
+  user   = aws_iam_user.altir_iam.name
 }

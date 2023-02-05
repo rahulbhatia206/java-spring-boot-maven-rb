@@ -1,6 +1,6 @@
 #Create ECR
 
-resource "aws_ecr_repository" "techverito-repo" {
+resource "aws_ecr_repository" "altir-repo" {
   name = "${var.name}-repo"
   image_tag_mutability = "MUTABLE"
 

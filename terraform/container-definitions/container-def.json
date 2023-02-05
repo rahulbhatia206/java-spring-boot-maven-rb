@@ -1,7 +1,7 @@
 [
   {
-    "name": "techverito-container",
-    "image": "136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest",
+    "name": "altir-container",
+    "image": "136052446758.dkr.ecr.us-east-2.amazonaws.com/altir:latest",
     "cpu": 10,
     "memory": 256,
     "essential": true,

@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "techverito-state"
-    key = "tf-techverito-project"
+    bucket = "altir-state"
+    key = "tf-altir-project"
     region = "us-east-2"
   }
 }

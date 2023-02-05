@@ -30,14 +30,14 @@ jobs:
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker build -t techverito-docker .
-          docker tag techverito-docker:latest 136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest
-          docker push 136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest
-          echo "::set-output name=image::136052446758.dkr.ecr.us-east-2.amazonaws.com/techverito:latest"    
+          docker build -t altir-docker .
+          docker tag altir-docker:latest 136052446758.dkr.ecr.us-east-2.amazonaws.com/altir:latest
+          docker push 136052446758.dkr.ecr.us-east-2.amazonaws.com/altir:latest
+          echo "::set-output name=image::136052446758.dkr.ecr.us-east-2.amazonaws.com/altir:latest"    
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition techverito-ecs \
+          aws ecs describe-task-definition --task-definition altir-ecs \
           --query taskDefinition > task-definition.json        
 
       - name: Fill in the new image ID in the Amazon ECS task definition
@@ -45,13 +45,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: techverito-container
+          container-name: altir-container
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: techverito-ecs-service
-          cluster: techverito-ecs-cluster
+          service: altir-ecs-service
+          cluster: altir-ecs-cluster
           wait-for-service-stability: true
